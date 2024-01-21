@@ -12,10 +12,23 @@ class PolicyAgree extends StatelessWidget {
     if (connectivityResult == ConnectivityResult.wifi ||
         connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.ethernet) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => const EnterPhoneView()));
+      if (context.mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const EnterPhoneView(),
+          ),
+        );
+      }
     } else {
-      showAlertDialog(context, text: 'A cellular data network is required to active WhatsApp Messenger.',title: 'Alert');
+      if (context.mounted) {
+        showAlertDialog(
+          context,
+          text: 'A cellular data network is required to active WhatsApp Messenger.',
+          title: 'Alert',
+        );
+      }
+
       return;
     }
   }
@@ -33,7 +46,7 @@ class PolicyAgree extends StatelessWidget {
               child: FittedBox(
                 child: Text(
                   'Welcome to WhatsApp',
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.displayLarge,
                   maxLines: 1,
                 ),
               ),
@@ -48,17 +61,16 @@ class PolicyAgree extends StatelessWidget {
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
-                      text: 'Read our ',
-                      style: greyTextStyle,
-                      children: <TextSpan>[
-                        TextSpan(text: 'Privacy policy', style: blueTextStyle),
-                        TextSpan(
-                            text: '. Tap "Agree and continue" to accept the ',
-                            style: greyTextStyle),
-                        TextSpan(
-                            text: 'Terms of Service', style: blueTextStyle),
-                        TextSpan(text: '.', style: greyTextStyle),
-                      ]),
+                    text: 'Read our ',
+                    style: greyTextStyle,
+                    children: <TextSpan>[
+                      TextSpan(text: 'Privacy policy', style: blueTextStyle),
+                      TextSpan(
+                          text: '. Tap "Agree and continue" to accept the ', style: greyTextStyle),
+                      TextSpan(text: 'Terms of Service', style: blueTextStyle),
+                      TextSpan(text: '.', style: greyTextStyle),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 16.0,

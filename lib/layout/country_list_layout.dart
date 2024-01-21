@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whats_app_clone/shared/components/constansts.dart';
+import 'package:whats_app_clone/shared/components/constants.dart';
 import 'package:whats_app_clone/shared/styles/colors.dart';
 import 'package:whats_app_clone/shared/styles/styles.dart';
 
@@ -7,10 +7,10 @@ class CountryListLayout extends StatefulWidget {
   const CountryListLayout({Key? key}) : super(key: key);
 
   @override
-  _CountryListLayoutState createState() => _CountryListLayoutState();
+  CountryListLayoutState createState() => CountryListLayoutState();
 }
 
-class _CountryListLayoutState extends State<CountryListLayout> {
+class CountryListLayoutState extends State<CountryListLayout> {
   double animatedContainerWidth = 0;
   double animatedContainerHeight = 0;
 
@@ -38,8 +38,7 @@ class _CountryListLayoutState extends State<CountryListLayout> {
                     onPressed: () {
                       setState(() {
                         animatedContainerHeight = 48.0;
-                        animatedContainerWidth =
-                            MediaQuery.of(context).size.width;
+                        animatedContainerWidth = MediaQuery.of(context).size.width;
                       });
                     },
                   ),
@@ -98,15 +97,17 @@ class _CountryListLayoutState extends State<CountryListLayout> {
                 child: TextField(
                   decoration: InputDecoration(
                     prefix: IconButton(
-                      icon: Icon(Icons.arrow_back,color: greyColor,),
-                      onPressed: (){
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: greyColor,
+                      ),
+                      onPressed: () {
                         setState(() {
                           animatedContainerWidth = 0;
                           animatedContainerHeight = 0;
                         });
                       },
                     ),
-
                   ),
                 ),
               ),

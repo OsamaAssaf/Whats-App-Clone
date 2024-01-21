@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'modules/authinticate/policy_agree_page.dart';
 import 'shared/styles/styles.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
           primary: const Color(0xff0a6850),
         ),
         textTheme: TextTheme(
-          headline1: headline1,
-          headline2: headline2,
+          displayLarge: displayLarge,
+          displayMedium: displayMedium,
         ),
       ),
       home: const PolicyAgree(),

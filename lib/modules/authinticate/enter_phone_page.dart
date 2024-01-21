@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:whats_app_clone/layout/country_list_layout.dart';
 import 'package:whats_app_clone/modules/other/help_page.dart';
 import 'package:whats_app_clone/shared/components/components.dart';
-import 'package:whats_app_clone/shared/components/constansts.dart';
-import 'package:whats_app_clone/shared/network/remote/authinticate/phone_auth.dart';
+import 'package:whats_app_clone/shared/components/constants.dart';
 import 'package:whats_app_clone/shared/styles/colors.dart';
 import 'package:whats_app_clone/shared/styles/styles.dart';
 
@@ -33,30 +32,39 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
       return;
     }
     String phoneNumber = '$countryPhoneCode${_phoneNumberController.text}';
-    print(phoneNumber);
     showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-              title: Text(
-                'You entered the phone number:',
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(
+          'You entered the phone number:',
+          style: defaultTextStyle,
+        ),
+        content: RichText(
+          text: TextSpan(
+            text: phoneNumber,
+            style: defaultTitleStyle,
+            children: <TextSpan>[
+              TextSpan(
+                text: '\n\nIs this OK, or would you like to edit the number?',
                 style: defaultTextStyle,
               ),
-              content: RichText(
-                  text: TextSpan(
-                      text: phoneNumber,
-                      style: defaultTitleStyle,
-                      children: <TextSpan>[
-                    TextSpan(
-                        text:
-                            '\n\nIs this OK, or would you like to edit the number?',
-                        style: defaultTextStyle),
-                  ]),
-              ),
-          actions: [
-            TextButton(onPressed: (){}, child:const Text('OK')),
-            TextButton(onPressed: (){Navigator.of(ctx).pop();}, child:const Text('Edit')),
-          ],
-            ));
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {},
+            child: const Text('OK'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+            child: const Text('Edit'),
+          ),
+        ],
+      ),
+    );
   }
 
   void showCountryPicker() {
@@ -67,11 +75,10 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
         return;
       }
       setState(() {
-        countryName = countryList.firstWhere(
-            (element) => element['code']!.toLowerCase() == value)['name'];
+        countryName =
+            countryList.firstWhere((element) => element['code']!.toLowerCase() == value)['name'];
         countryPhoneCode = countryList
-            .firstWhere((element) => element['code']!.toLowerCase() == value)[
-                'dialCode']!
+            .firstWhere((element) => element['code']!.toLowerCase() == value)['dialCode']!
             .replaceFirst('+', '');
       });
     });
@@ -82,11 +89,10 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
     _phoneNumberController = TextEditingController();
     final String defaultLocale = Platform.localeName;
     setState(() {
-      countryName = countryList.firstWhere(
-          (element) => element['code'] == defaultLocale.split('_')[1])['name'];
+      countryName = countryList
+          .firstWhere((element) => element['code'] == defaultLocale.split('_')[1])['name'];
       countryPhoneCode = countryList
-          .firstWhere((element) =>
-              element['code'] == defaultLocale.split('_')[1])['dialCode']!
+          .firstWhere((element) => element['code'] == defaultLocale.split('_')[1])['dialCode']!
           .replaceFirst('+', '');
     });
     super.initState();
@@ -99,7 +105,7 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
         elevation: 0.0,
         title: Text(
           'Enter your phone number',
-          style: Theme.of(context).textTheme.headline2,
+          style: Theme.of(context).textTheme.displayMedium,
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -131,24 +137,8 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
                 style: defaultTextStyle,
                 textAlign: TextAlign.center,
               ),
-              RichText(
-                  text: TextSpan(
-                      text: 'What\'s my number?', style: blueTextStyle)),
+              RichText(text: TextSpan(text: 'What\'s my number?', style: blueTextStyle)),
               GestureDetector(
-                child: Container(
-                  height: 40,
-                  width: 250,
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(
-                              width: borderWidth, color: darkGreenColor))),
-                  child: Row(
-                    children: [
-                      Expanded(child: Center(child: Text(countryName!))),
-                      const Icon(Icons.arrow_drop_down_outlined),
-                    ],
-                  ),
-                ),
                 onTap: showCountryPicker,
                 onTapCancel: () {
                   setState(() {
@@ -165,6 +155,19 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
                     borderWidth = 1.0;
                   });
                 },
+                child: Container(
+                  height: 40,
+                  width: 250,
+                  decoration: BoxDecoration(
+                      border:
+                          Border(bottom: BorderSide(width: borderWidth, color: darkGreenColor))),
+                  child: Row(
+                    children: [
+                      Expanded(child: Center(child: Text(countryName!))),
+                      const Icon(Icons.arrow_drop_down_outlined),
+                    ],
+                  ),
+                ),
               ),
               SizedBox(
                 width: 250,
@@ -174,8 +177,7 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
                     SizedBox(
                       width: 50,
                       child: TextField(
-                        controller:
-                            TextEditingController(text: countryPhoneCode),
+                        controller: TextEditingController(text: countryPhoneCode),
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: darkGreenColor),
@@ -217,8 +219,8 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
           ),
         ),
       ),
-      floatingActionButton: defaultButton(
-          context: context, text: 'NEXT', width: 150, onTap: nextButtonSubmit),
+      floatingActionButton:
+          defaultButton(context: context, text: 'NEXT', width: 150, onTap: nextButtonSubmit),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }

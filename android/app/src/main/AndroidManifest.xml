@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.whats_app_clone">
+    package="com.assaf.whats_app_clone">
    <application
         android:label="whats_app_clone"
         android:name="${applicationName}"

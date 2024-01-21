@@ -3,12 +3,16 @@ import 'package:page_transition/page_transition.dart';
 import 'package:whats_app_clone/shared/styles/styles.dart';
 
 void pageNavigation(BuildContext context, Widget page) {
-  Navigator.push(context,
-      PageTransition(type: PageTransitionType.rightToLeft, child: page));
+  Navigator.push(
+    context,
+    PageTransition(
+      type: PageTransitionType.rightToLeft,
+      child: page,
+    ),
+  );
 }
 
-void showAlertDialog(BuildContext context,
-    {required String text, String? title}) {
+void showAlertDialog(BuildContext context, {required String text, String? title}) {
   showDialog(
     context: context,
     builder: (ctx) => AlertDialog(
@@ -24,7 +28,7 @@ void showAlertDialog(BuildContext context,
       ),
       actions: [
         TextButton(
-            onPressed:() =>  Navigator.of(context).pop(),
+            onPressed: () => Navigator.of(context).pop(),
             child: Text(
               'Ok',
               style: darkGreenTextStyle,
@@ -33,7 +37,6 @@ void showAlertDialog(BuildContext context,
     ),
   );
 }
-
 
 Widget defaultButton(
         {required BuildContext context,
@@ -46,11 +49,13 @@ Widget defaultButton(
       width: width,
       child: ElevatedButton(
         onPressed: onTap,
-        child: Text(text),
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(3.0),
-        ))),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(3.0),
+            ),
+          ),
+        ),
+        child: Text(text),
       ),
     );

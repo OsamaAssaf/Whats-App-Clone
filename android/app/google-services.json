@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:617779843999:android:c83f84b37ae4432da0e3aa",
         "android_client_info": {
-          "package_name": "com.example.whats_app_clone"
+          "package_name": "com.assaf.whats_app_clone"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "617779843999-i75hpvjruangbktdoel41dv6o6mbod84.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.whats_app_clone",
+            "package_name": "com.assaf.whats_app_clone",
             "certificate_hash": "0bf77e441ce6bf2428a090ecf3f595281ec545a7"
           }
         },
